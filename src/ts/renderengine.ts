@@ -30,9 +30,9 @@ export default class RenderEngine {
 		const key = e.key || e.keyCode;
 
 		if (key === 'Enter' || key === 13) {
-			const value = this._currentInput.value;
+			const value = this._currentInput.value.toLowerCase();
 
-			if (value.toLowerCase() === 'clear') {
+			if (value === 'clear') {
 				this._wrapper.replaceChildren();
 				this._redraw();
 				return;
