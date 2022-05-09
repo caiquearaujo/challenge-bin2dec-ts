@@ -10,6 +10,10 @@ h1 {
 	font-size: 4.8rem;
 	line-height: 4.8rem;
 	margin-bottom: 0;
+
+	span {
+		color: $green;
+	}
 }
 
 .ln {
@@ -59,8 +63,7 @@ h1 {
 		width: 100%;
 		max-width: 100%;
 		border: none;
-		border-bottom: 1px $white solid;
-		background: transparent;
+		background: rgba($white, 0.28);
 		outline: none;
 
 		&::placeholder {

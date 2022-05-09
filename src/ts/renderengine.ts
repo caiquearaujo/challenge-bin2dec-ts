@@ -32,7 +32,7 @@ export default class RenderEngine {
 		if (key === 'Enter' || key === 13) {
 			const value = this._currentInput.value;
 
-			if (value === 'clear()') {
+			if (value === 'clear') {
 				this._wrapper.replaceChildren();
 				this._redraw();
 				return;

@@ -15,7 +15,7 @@ export default class Bin2Dec {
 		if (!match || !match[2])
 			return {
 				error: true,
-				message: `Invalid expression for "${input}": it is not a valid number`,
+				message: `Invalid expression for "${input}": it is not a valid number, type a binary number, b:<number> or d:<number>.`,
 			};
 
 		return !match[1] || match[1] === 'b'
@@ -27,7 +27,7 @@ export default class Bin2Dec {
 		if (input.match(/[2-9]+/))
 			return {
 				error: true,
-				message: `Invalid expression for "${input}": expecting a binary number`,
+				message: `Invalid expression for "${input}": expecting a binary number, type a binary number, b:<number> or d:<number>.`,
 			};
 
 		return { error: false, message: `decimal(${parseInt(input, 2)})` };
