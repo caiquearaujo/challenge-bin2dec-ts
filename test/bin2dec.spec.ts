@@ -1,4 +1,4 @@
-import Bin2Dec from '../src/bin2dec';
+import Bin2Dec from '../src/ts/bin2dec';
 
 describe('bin2dec engine', () => {
 	it('throw error when input is empty string', () => {

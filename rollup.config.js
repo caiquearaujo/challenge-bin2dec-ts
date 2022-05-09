@@ -4,16 +4,24 @@ import typescript from 'rollup-plugin-typescript';
 
 module.exports = [
 	{
-		input: 'src/index.ts',
+		input: 'src/ts/index.ts',
 		output: {
 			file: 'dist/bin2dec.js',
 			name: 'bin2dec',
 			format: 'umd',
 		},
-		plugins: [resolve(), typescript()],
+		plugins: [
+			resolve(),
+			typescript(),
+			scss({
+				output: 'dev/dist/styles.css',
+				processor: () => postcss([autoprefixer()]),
+				outputStyle: 'compressed',
+			}),
+		],
 	},
 	{
-		input: 'src/index.ts',
+		input: 'src/ts/index.ts',
 		output: {
 			file: 'dist/bin2dec.min.js',
 			name: 'bin2dec',
