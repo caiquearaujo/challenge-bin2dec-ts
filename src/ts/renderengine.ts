@@ -44,7 +44,11 @@ export default class RenderEngine {
 
 		if (solve)
 			this.append(
-				this._line(solve.message, solve.error ? 'red' : 'blue')
+				this._line(
+					solve.message,
+					solve.error ? '!' : '=',
+					solve.error ? 'red' : 'blue'
+				)
 			);
 
 		this.append(this._input());
@@ -78,12 +82,13 @@ export default class RenderEngine {
 
 	private _line(
 		content: string,
+		marker: string = '>',
 		color: TRenderColor = 'green'
 	): HTMLDivElement {
 		const line = document.createElement('div');
 		line.className = `ln ${color}`;
 
-		line.appendChild(this._mark());
+		line.appendChild(this._mark(marker));
 		line.appendChild(this._content(content));
 
 		return line;
@@ -96,10 +101,10 @@ export default class RenderEngine {
 		return el;
 	}
 
-	private _mark(): HTMLSpanElement {
+	private _mark(marker: string = '>'): HTMLSpanElement {
 		const el = document.createElement('span');
 		el.className = 'mark';
-		el.textContent = '>';
+		el.textContent = marker;
 		return el;
 	}
 }

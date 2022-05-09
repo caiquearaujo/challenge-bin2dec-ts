@@ -31,10 +31,18 @@ h1 {
 
 	&.blue {
 		color: $blue;
+
+		.mark {
+			color: $blue;
+		}
 	}
 
 	&.red {
 		color: $red;
+
+		.mark {
+			color: $red;
+		}
 	}
 
 	.mark {
