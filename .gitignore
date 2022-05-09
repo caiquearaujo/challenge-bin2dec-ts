@@ -10,7 +10,6 @@ cache
 coverage
 rules
 
-
 # OS or Editor folders
 ._.DS_Store
 .DS_Store
