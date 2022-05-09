@@ -1,0 +1,82 @@
+{
+	"name": "@caiquearaujo/bin2dec-ts",
+	"version": "1.0.0",
+	"description": "Binary-to-Decimal number converter by usign typescript/javascript.",
+	"scripts": {
+		"ts:check": "tsc --noEmit",
+		"ts:check-watch": "npm run ts:check -- --watch",
+		"ts:build": "tsc --emitDeclarationOnly",
+		"css:build": "npm run css:build-sass && npm run css:build-autoprefix && npm run css:build-cleancss",
+		"css:build-autoprefix": "postcss --use autoprefixer --map false --output dist/css/bin2dec.v$npm_package_version.css dist/css/bin2dec.v$npm_package_version.css",
+		"css:build-cleancss": "cleancss -o dist/css/bin2dec.v$npm_package_version.min.css dist/css/bin2dec.v$npm_package_version.css",
+		"css:build-sass": "sass --style expanded src/scss/global.scss dist/css/bin2dec.v$npm_package_version.css",
+		"css:clean": "rimraf css",
+		"css:deploy": "npm run css:clean && npm run css:build",
+		"css:watch": "npm run css:build-sass -- --watch",
+		"js:watch": "rimraf ./dev/dist && rollup -c rollup.config.dev.js -w",
+		"js:serve": "nodemon ./dev/serve.js",
+		"js:umd": "rimraf ./dist && rollup -c",
+		"js:cjs": "rimraf ./lib && tsc --module commonjs --outDir lib",
+		"js:esm": "rimraf ./esm && tsc --module ESNext --outDir esm",
+		"lint": "eslint --ext .ts,.js --ignore-path .gitignore --fix src",
+		"format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+		"build": "npm run css:deploy && npm run build:cjs && npm run build:esm && npm run build:umd",
+		"prepare": "npm run build",
+		"version": "npm run format && git add -A src",
+		"postversion": "git push && git push --tags",
+		"prepublishOnly": "npm test && npm run lint",
+		"preversion": "npm run lint",
+		"test": "jest",
+		"test:debug": "node --inspect node_modules/.bin/jest --runInBand"
+	},
+	"main": "lib/index.js",
+	"types": "lib/index.ts",
+	"module": "esm/index.js",
+	"unpkg": "dist/bin2dec.min.js",
+	"browser": "dist/bin2dec.min.js",
+	"files": [
+		"lib/**/*",
+		"esm/**/*",
+		"dist/**/*"
+	],
+	"keywords": [
+		"binary",
+		"decimal",
+		"converter"
+	],
+	"author": "caiquearaujo",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/caiquearaujo/challenge-bin2dec-ts.git"
+	},
+	"bugs": {
+		"url": "https://github.com/caiquearaujo/challenge-bin2dec-ts/issues"
+	},
+	"homepage": "https://github.com/caiquearaujo/challenge-bin2dec-ts#readme",
+	"devDependencies": {
+		"@rollup/plugin-node-resolve": "^13.3.0",
+		"@rollup/plugin-typescript": "^8.3.2",
+		"@types/jest": "^27.5.0",
+		"@types/node": "^17.0.31",
+		"@typescript-eslint/eslint-plugin": "^5.23.0",
+		"@typescript-eslint/parser": "^5.23.0",
+		"autoprefixer": "^10.4.7",
+		"clean-css-cli": "^5.6.0",
+		"eslint": "^8.15.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"express": "^4.18.1",
+		"jest": "^28.1.0",
+		"postcss-cli": "^9.1.0",
+		"postcss-preset-env": "^7.5.0",
+		"prettier": "^2.6.2",
+		"rimraf": "^3.0.2",
+		"rollup": "^2.72.1",
+		"rollup-plugin-uglify": "^6.0.4",
+		"sass": "^1.51.0",
+		"ts-jest": "^28.0.2",
+		"typescript": "^4.6.4"
+	}
+}
