@@ -46,3 +46,9 @@ html::-webkit-scrollbar-track {
 html::-webkit-scrollbar-thumb {
 	background-color: $white;
 }
+
+@media screen and (max-width: 780px) {
+	html {
+		font-size: 7px;
+	}
+}

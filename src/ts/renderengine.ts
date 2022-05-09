@@ -17,7 +17,7 @@ export default class RenderEngine {
 		this.lib = new Bin2Dec();
 
 		this.append(this._line('Starting typing a number below...'));
-		this._redraw('');
+		this._redraw();
 	}
 
 	public append(el: HTMLElement): void {
@@ -31,6 +31,13 @@ export default class RenderEngine {
 
 		if (key === 'Enter' || key === 13) {
 			const value = this._currentInput.value;
+
+			if (value === 'clear()') {
+				this._wrapper.replaceChildren();
+				this._redraw();
+				return;
+			}
+
 			this._redraw(value, this.lib.input(value));
 		}
 	}
