@@ -34,6 +34,9 @@ export default class Bin2Dec {
 	}
 
 	private _fromDec(input: string): IBin2DecResponse {
-		return { error: false, message: `binary(${parseInt(input, 10)})` };
+		return {
+			error: false,
+			message: `binary(${parseInt(input).toString(2)})`,
+		};
 	}
 }

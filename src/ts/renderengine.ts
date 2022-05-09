@@ -1,4 +1,4 @@
-import Bin2Dec from './bin2dec';
+import Bin2Dec, { IBin2DecResponse } from './bin2dec';
 import { TOrNull } from './types';
 
 export type TRenderColor = 'green' | 'blue' | 'white' | 'red';
@@ -17,6 +17,7 @@ export default class RenderEngine {
 		this.lib = new Bin2Dec();
 
 		this.append(this._line('Starting typing a number below...'));
+		this._redraw('');
 	}
 
 	public append(el: HTMLElement): void {
@@ -30,17 +31,25 @@ export default class RenderEngine {
 
 		if (key === 'Enter' || key === 13) {
 			const value = this._currentInput.value;
-			const solve = this.lib.input(value);
+			this._redraw(value, this.lib.input(value));
+		}
+	}
 
+	private _redraw(
+		value: TOrNull<string> = null,
+		solve: TOrNull<IBin2DecResponse> = null
+	) {
+		if (this._currentInput && value)
 			this._inputToLine(this._currentInput.parentElement, value);
 
+		if (solve)
 			this.append(
 				this._line(solve.message, solve.error ? 'red' : 'blue')
 			);
-			this.append(this._input());
 
-			this._currentInput.focus();
-		}
+		this.append(this._input());
+
+		if (this._currentInput) this._currentInput.focus();
 	}
 
 	private _input(): HTMLDivElement {
@@ -90,7 +99,7 @@ export default class RenderEngine {
 	private _mark(): HTMLSpanElement {
 		const el = document.createElement('span');
 		el.className = 'mark';
-		el.textContent = '$gt;';
+		el.textContent = '>';
 		return el;
 	}
 }

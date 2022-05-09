@@ -1,6 +1,9 @@
 import { uglify } from 'rollup-plugin-uglify';
-import resolve from 'rollup-plugin-node-resolve';
-import typescript from 'rollup-plugin-typescript';
+import resolve from '@rollup/plugin-node-resolve';
+import typescript from '@rollup/plugin-typescript';
+import scss from 'rollup-plugin-scss';
+import postcss from 'postcss';
+import autoprefixer from 'autoprefixer';
 
 module.exports = [
 	{
